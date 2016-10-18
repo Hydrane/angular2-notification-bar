@@ -123,7 +123,7 @@ NotificationBarComponent = __decorate([
         template: `
         <div class="notifications-container">
             <div *ngFor="let notification of notifications; let i = index;"
-                 class="{{notification.typeValue}}"
+                 class="notification {{notification.typeValue}}"
                  [@flyDown]>
                 <span *ngIf="notification.isHtml" class="message" [innerHTML]="notification.message"></span>
                 <span *ngIf="!notification.isHtml" class="message">{{notification.message}}</span>
