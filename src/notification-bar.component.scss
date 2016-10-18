@@ -1,0 +1,59 @@
+
+:host {
+  position: relative;
+  display: block;
+}
+
+.notifications-container {
+  position: fixed;
+  top: 40px;
+  right: 0;
+  left: 0;
+  min-height: 25px;
+  line-height: 25px;
+  width: 100%;
+  z-index: 6;
+  overflow: hidden;
+}
+
+.notification {
+  position: relative;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+}
+
+.message {
+  padding: 0 12px;
+}
+
+.error {
+  @extend .notification;
+  background-color: #F64747;
+  border-bottom: 1px solid #f31515;
+}
+
+.success {
+  @extend .notification;
+  background-color: #03C9A9;
+  border-bottom: 1px solid #02aa8f;
+}
+
+.warning {
+  @extend .notification;
+  background-color: #F7CA18;
+  border-bottom: 1px solid #e7ba08;
+}
+
+.info {
+  @extend .notification;
+  background-color: #0c6997;
+  border-bottom: 1px solid #0c6997;
+}
+
+.close-click {
+  font-size: 12px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 auto;
+}
