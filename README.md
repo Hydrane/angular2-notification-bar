@@ -2,8 +2,6 @@
 
 This is a simple notification bar component for Angular2.
 
-![alt](logo.png)
-
 Inspired by [ng-notifications-bar](https://github.com/alexbeletsky/ng-notifications-bar) - in angular2.
 
 # Installation
