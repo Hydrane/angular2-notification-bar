@@ -26,12 +26,6 @@ export class AppModule {
 ```
 
 ```html
-<ui-switch></ui-switch>
-```
-
-# Two way binding
-
-```html
 <notification-bar></notification-bar
 ```
 
