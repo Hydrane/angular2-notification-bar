@@ -19,10 +19,18 @@ export class AppComponent implements OnInit {
     }
 
     createInfo() {
+        this.notificationBarService.create({ message: 'USER_SAVED', type: NotificationType.Info});
+    }
+
+    createSuccess() {
         this.notificationBarService.create({ message: 'USER_SAVED', type: NotificationType.Success});
     }
 
-    onChange() {
-        this.count++;
+    createError() {
+        this.notificationBarService.create({ message: 'USER_SAVED', type: NotificationType.Error});
+    }
+
+    createWarning() {
+        this.notificationBarService.create({ message: 'USER_SAVED', type: NotificationType.Warning});
     }
 }
