@@ -29,5 +29,18 @@ export class AppModule {
 <notification-bar></notification-bar
 ```
 
+```javascript
+this.notificationBarService.create({ message: 'USER_SAVED', type: NotificationType.Success});
+```
+
+# Options
+
+    message: string;
+    type?: NotificationType;
+    autoHide?: boolean;
+    hideDelay?: number;
+    isHtml?: boolean;
+    allowClose?: boolean; 
+
 # License
 MIT
