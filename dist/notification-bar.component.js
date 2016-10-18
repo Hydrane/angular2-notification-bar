@@ -64,8 +64,73 @@ let NotificationBarComponent = class NotificationBarComponent {
 NotificationBarComponent = __decorate([
     core_1.Component({
         selector: 'notification-bar',
-        styles: [require('./notification-bar.component.scss')],
-        template: require('./notification-bar.component.html'),
+        styles: [`
+        :host {
+          position: relative;
+          display: block;
+        }
+        
+        .notifications-container {
+          position: fixed;
+          top: 0px;
+          right: 0;
+          left: 0;
+          min-height: 25px;
+          line-height: 25px;
+          width: 100%;
+          z-index: 6;
+          overflow: hidden;
+        }
+        
+        .notification {
+          position: relative;
+          text-align: center;
+          font-size: 12px;
+          color: #fff;
+        }
+        
+        .message {
+          padding: 0 12px;
+        }
+        
+        .error {
+          background-color: #F64747;
+          border-bottom: 1px solid #f31515;
+        }
+        
+        .success {
+          background-color: #03C9A9;
+          border-bottom: 1px solid #02aa8f;
+        }
+        
+        .warning {
+          background-color: #F7CA18;
+          border-bottom: 1px solid #e7ba08;
+        }
+        
+        .info {
+          background-color: #0c6997;
+          border-bottom: 1px solid #0c6997;
+        }
+        
+        .close-click {
+          font-size: 12px;
+          cursor: pointer;
+          padding: 10px;
+          margin: 0 auto;
+        }
+    `],
+        template: `
+        <div class="notifications-container">
+            <div *ngFor="let notification of notifications; let i = index;"
+                 class="{{notification.typeValue}}"
+                 [@flyDown]>
+                <span *ngIf="notification.isHtml" class="message" [innerHTML]="notification.message"></span>
+                <span *ngIf="!notification.isHtml" class="message">{{notification.message}}</span>
+                <span class="fa fa-close close-click" *ngIf="notification.allowClose" (click)="hideNotification(notification)"></span>
+            </div>
+        </div>
+    `,
         animations: [
             core_1.trigger('flyDown', [
                 core_1.state('in', core_1.style({
