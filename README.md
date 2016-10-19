@@ -2,7 +2,7 @@
 
 This is a simple notification bar component for Angular2.
 
-Inspired by [ng-notifications-bar](https://github.com/alexbeletsky/ng-notifications-bar) - in angular2.
+Inspired by [ng-notifications-bar](https://github.com/alexbeletsky/ng-notifications-bar) - in angular 1.
 
 # Installation
 
@@ -13,7 +13,7 @@ npm install angular2-notification-bar --save
 # Usage
 
 ```javascript
-import { NotificationBarModule } from 'angular2-ui-switch'
+import { NotificationBarModule } from 'angular2-notification-bar'
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -26,7 +26,7 @@ export class AppModule {
 ```
 
 ```html
-<notification-bar></notification-bar
+<notification-bar></notification-bar>
 ```
 
 ```javascript
