@@ -75,7 +75,6 @@ NotificationBarComponent = __decorate([
           top: 0px;
           right: 0;
           left: 0;
-          min-height: 25px;
           line-height: 25px;
           width: 100%;
           z-index: 6;
