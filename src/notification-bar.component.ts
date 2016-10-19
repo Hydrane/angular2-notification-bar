@@ -7,8 +7,8 @@ import { NotificationBarService } from './notification-bar.service';
 import { Notification, NotificationType } from './index';
 import { MessagesConfig } from './message-config';
 
-// todo: ability to disable the highlight capability
-// todo: accessibility
+
+
 export const MESSAGES_CONFIG = new OpaqueToken('notification-bar.messages.config');
 
 /**
