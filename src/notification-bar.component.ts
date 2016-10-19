@@ -1,11 +1,12 @@
 import {
     Component, OnInit, trigger, state, style, transition, animate, Optional, Inject,
-    OpaqueToken
+    OpaqueToken, OnDestroy
 } from '@angular/core';
 
 import { NotificationBarService } from './notification-bar.service';
 import { Notification, NotificationType } from './index';
 import { MessagesConfig } from './message-config';
+import { Subscription } from 'rxjs';
 
 
 
@@ -104,7 +105,7 @@ export const MESSAGES_CONFIG = new OpaqueToken('notification-bar.messages.config
         ])
     ]
 })
-export class NotificationBarComponent implements OnInit {
+export class NotificationBarComponent implements OnInit, OnDestroy {
 
     notifications: Notification[] = [];
 
@@ -117,26 +118,25 @@ export class NotificationBarComponent implements OnInit {
         allowClose: false
     };
 
+    subscription: Subscription;
+
     constructor(
-        @Inject(MESSAGES_CONFIG) @Optional() private config: MessagesConfig,
-        private notificationBarService: NotificationBarService
+        private notificationBarService: NotificationBarService,
+        @Inject(MESSAGES_CONFIG) @Optional() private config?: MessagesConfig
     ) { }
 
     ngOnInit() {
-        this.notificationBarService.onCreate.subscribe(notification => this.addNotification(notification));
+        this.subscription = this.notificationBarService.onCreate.subscribe(this.addNotification.bind(this));
     }
 
     addNotification(notification: Notification) {
         let newNotification = Object.assign({}, this.defaults, notification);
         newNotification.typeValue = NotificationType[newNotification.type].toLowerCase();
-        if (this.config) {
+        if (this.config && this.config.messages) {
             newNotification.message = this.config.messages[notification.message] || notification.message;
         }
 
-        this.notifications = [
-            ...this.notifications,
-            newNotification
-        ];
+        this.notifications.push(newNotification);
 
         if (newNotification.autoHide) {
             window.setTimeout(() => {
@@ -148,9 +148,10 @@ export class NotificationBarComponent implements OnInit {
     hideNotification(notification: Notification) {
         let index = this.notifications.indexOf(notification);
 
-        this.notifications = [
-            ...this.notifications.slice(0, index),
-            ...this.notifications.slice(index + 1)
-        ];
+        this.notifications.splice(index, 1);
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 }

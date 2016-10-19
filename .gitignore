@@ -1,2 +1,5 @@
 .idea/
 node_modules/
+example/dist/
+npm-debug.log
+.DS_Store
