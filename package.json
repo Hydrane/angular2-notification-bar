@@ -2,7 +2,8 @@
   "name": "angular2-notification-bar",
   "version": "1.1.2",
   "description": "Notification bar for angular2",
-  "main": "release/index.js",
+  "main": "./release/angular2-notification-bar.umd.js",
+  "module": "./index.js",
   "typings": "release/index.d.ts",
   "scripts": {
     "dev": "webpack-dev-server --port 4000 --config webpack.config.js --inline --progress --profile --colors --watch --display-error-details --display-cached --content-base",
