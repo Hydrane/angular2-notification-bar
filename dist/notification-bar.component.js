@@ -14,16 +14,14 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 const core_1 = require('@angular/core');
 const notification_bar_service_1 = require('./notification-bar.service');
 const index_1 = require('./index');
-// todo: ability to disable the highlight capability
-// todo: accessibility
 exports.MESSAGES_CONFIG = new core_1.OpaqueToken('notification-bar.messages.config');
 /**
  *
  */
 let NotificationBarComponent = class NotificationBarComponent {
-    constructor(config, notificationBarService) {
-        this.config = config;
+    constructor(notificationBarService, config) {
         this.notificationBarService = notificationBarService;
+        this.config = config;
         this.notifications = [];
         this.defaults = {
             message: '',
@@ -35,18 +33,15 @@ let NotificationBarComponent = class NotificationBarComponent {
         };
     }
     ngOnInit() {
-        this.notificationBarService.onCreate.subscribe(notification => this.addNotification(notification));
+        this.subscription = this.notificationBarService.onCreate.subscribe(this.addNotification.bind(this));
     }
     addNotification(notification) {
         let newNotification = Object.assign({}, this.defaults, notification);
         newNotification.typeValue = index_1.NotificationType[newNotification.type].toLowerCase();
-        if (this.config) {
+        if (this.config && this.config.messages) {
             newNotification.message = this.config.messages[notification.message] || notification.message;
         }
-        this.notifications = [
-            ...this.notifications,
-            newNotification
-        ];
+        this.notifications.push(newNotification);
         if (newNotification.autoHide) {
             window.setTimeout(() => {
                 this.hideNotification(newNotification);
@@ -55,10 +50,10 @@ let NotificationBarComponent = class NotificationBarComponent {
     }
     hideNotification(notification) {
         let index = this.notifications.indexOf(notification);
-        this.notifications = [
-            ...this.notifications.slice(0, index),
-            ...this.notifications.slice(index + 1)
-        ];
+        this.notifications.splice(index, 1);
+    }
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 };
 NotificationBarComponent = __decorate([
@@ -152,9 +147,9 @@ NotificationBarComponent = __decorate([
             ])
         ]
     }),
-    __param(0, core_1.Inject(exports.MESSAGES_CONFIG)),
-    __param(0, core_1.Optional()), 
-    __metadata('design:paramtypes', [Object, notification_bar_service_1.NotificationBarService])
+    __param(1, core_1.Inject(exports.MESSAGES_CONFIG)),
+    __param(1, core_1.Optional()), 
+    __metadata('design:paramtypes', [notification_bar_service_1.NotificationBarService, Object])
 ], NotificationBarComponent);
 exports.NotificationBarComponent = NotificationBarComponent;
 //# sourceMappingURL=notification-bar.component.js.map
