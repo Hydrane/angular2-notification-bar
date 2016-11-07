@@ -1,6 +1,6 @@
-export * from './notification-bar.module';
-export * from './notification-bar.service';
-export * from './message-config';
+export * from './src/notification-bar.module';
+export * from './src/notification-bar.service';
+export * from './src/message-config';
 
 export enum NotificationType { Info, Success, Error, Warning }
 

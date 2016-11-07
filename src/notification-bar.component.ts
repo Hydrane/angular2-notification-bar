@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { NotificationBarService } from './notification-bar.service';
-import { Notification, NotificationType } from './index';
+import { Notification, NotificationType } from '../index';
 import { MessagesConfig } from './message-config';
 import { Subscription } from 'rxjs';
 
@@ -12,9 +12,6 @@ import { Subscription } from 'rxjs';
 
 export const MESSAGES_CONFIG = new OpaqueToken('notification-bar.messages.config');
 
-/**
- *
- */
 @Component({
     selector: 'notification-bar',
     styles: [`
