@@ -12,4 +12,5 @@ export interface Notification {
     hideDelay?: number;
     isHtml?: boolean;
     allowClose?: boolean;
+    hideOnHover?: boolean;
 }

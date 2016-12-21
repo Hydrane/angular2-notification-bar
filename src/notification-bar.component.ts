@@ -73,6 +73,7 @@ export const MESSAGES_CONFIG = new OpaqueToken('notification-bar.messages.config
         <div class="notifications-container">
             <div *ngFor="let notification of notifications; let i = index;"
                  class="notification {{notification.typeValue}}"
+                 (mouseover)="hideOnHover(notification)"
                  [@flyDown]>
                 <span *ngIf="notification.isHtml" class="message" [innerHTML]="notification.message"></span>
                 <span *ngIf="!notification.isHtml" class="message">{{notification.message}}</span>
@@ -112,7 +113,8 @@ export class NotificationBarComponent implements OnInit, OnDestroy {
         autoHide: true,
         hideDelay: 3000,
         isHtml: false,
-        allowClose: false
+        allowClose: false,
+        hideOnHover: true
     };
 
     subscription: Subscription;
@@ -150,5 +152,11 @@ export class NotificationBarComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+    }
+
+    hideOnHover(notification: Notification) {
+        if (notification.hideOnHover) {
+            this.hideNotification(notification);
+        }
     }
 }

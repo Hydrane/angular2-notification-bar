@@ -41,6 +41,7 @@ this.notificationBarService.create({ message: 'USER_SAVED', type: NotificationTy
     hideDelay?: number;
     isHtml?: boolean;
     allowClose?: boolean;
+    hideOnHover?: boolean
 
 # License
 MIT
