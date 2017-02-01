@@ -122,11 +122,11 @@ export class NotificationBarComponent implements OnInit, OnDestroy {
     constructor(
         private notificationBarService: NotificationBarService,
         @Inject(MESSAGES_CONFIG) @Optional() private config?: MessagesConfig
-    ) { }
-
-    ngOnInit() {
+    ) {
         this.subscription = this.notificationBarService.onCreate.subscribe(this.addNotification.bind(this));
     }
+
+    ngOnInit() { }
 
     addNotification(notification: Notification) {
         let newNotification = Object.assign({}, this.defaults, notification);
