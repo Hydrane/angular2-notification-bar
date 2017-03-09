@@ -63,9 +63,11 @@ export const MESSAGES_CONFIG = new OpaqueToken('notification-bar.messages.config
         }
         
         .close-click {
-          font-size: 12px;
+          font-size: 22px;
           cursor: pointer;
           padding: 10px;
+          position: relative;
+          top: 2px;
           margin: 0 auto;
         }
     `],
@@ -77,7 +79,7 @@ export const MESSAGES_CONFIG = new OpaqueToken('notification-bar.messages.config
                  [@flyDown]>
                 <span *ngIf="notification.isHtml" class="message" [innerHTML]="notification.message"></span>
                 <span *ngIf="!notification.isHtml" class="message">{{notification.message}}</span>
-                <span class="fa fa-close close-click" *ngIf="notification.allowClose" (click)="hideNotification(notification)"></span>
+                <span class="close-click" *ngIf="notification.allowClose" (click)="hideNotification(notification)">×</span>
             </div>
         </div>
     `,
