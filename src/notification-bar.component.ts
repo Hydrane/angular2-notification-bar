@@ -94,7 +94,7 @@ export const MESSAGES_CONFIG = new OpaqueToken('notification-bar.messages.config
                     opacity: 0,
                     transform: 'translateY(-100%)'
                 }),
-                animate('600ms ease-in')
+                animate('200ms ease-in')
             ]),
             transition('* => void', [
                 animate('200ms ease-out', style({
