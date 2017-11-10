@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NotificationBarService } from './notification-bar.service';
 import { NotificationBarComponent, MESSAGES_CONFIG } from './notification-bar.component';
@@ -8,8 +9,9 @@ import { MessagesConfig } from './message-config';
 
 
 @NgModule({
-    imports:      [
-        CommonModule
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule
     ],
     declarations: [ NotificationBarComponent ],
     providers: [ NotificationBarService ],

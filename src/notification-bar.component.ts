@@ -1,7 +1,5 @@
-import {
-    Component, OnInit, trigger, state, style, transition, animate, Optional, Inject,
-    OpaqueToken, OnDestroy
-} from '@angular/core';
+import { Component, OnInit, Optional, Inject, OpaqueToken, OnDestroy } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import { NotificationBarService } from './notification-bar.service';
 import { Notification, NotificationType } from '../index';
